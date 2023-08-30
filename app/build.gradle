@@ -15,10 +15,6 @@ repositories {
     mavenCentral()
 }
 
-compileJava {
-    options.release = 20
-}
-
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
@@ -29,16 +25,9 @@ dependencies {
     implementation 'com.google.guava:guava:31.1-jre'
 }
 
-// Apply a specific Java toolchain to ease working on different environments.
-java {
-    toolchain {
-        languageVersion = JavaLanguageVersion.of(20)
-    }
-}
-
 application {
     // Define the main class for the application.
-    mainClass = 'app71.App'
+    mainClass = 'hexlet.code.App'
 }
 
 tasks.named('test') {
