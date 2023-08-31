@@ -4,6 +4,8 @@
 # Ignore Gradle build output directory
 build
 
+*.json
+
 **/logs/
 .settings
 bin
@@ -11,3 +13,4 @@ bin
 .factorypath
 .classpath
 .project*
+.DS_Store
