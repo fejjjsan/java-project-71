@@ -9,7 +9,7 @@ build
 **/logs/
 .settings
 bin
-.idea/
+../.idea/
 .factorypath
 .classpath
 .project*
