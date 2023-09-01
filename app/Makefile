@@ -1,19 +1,22 @@
 # Makefile
 
 build:
-	gradle clean build
+	./gradlew clean build
 
 run:
-	gradle run
+	./gradlew run
 
 test:
-	gradle test
+	./gradlew test
 
 lint:
-	gradle checkstyleMain
+	./gradlew checkstyleMain
 
 run-dist:
 	./app/build/install/app/bin/app
+
+test-report:
+	./gradlew jacocoTestReport
 
 .PHONY: build
 .PHONY: test
