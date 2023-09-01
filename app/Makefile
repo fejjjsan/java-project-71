@@ -16,7 +16,6 @@ run-dist:
 	./app/build/install/app/bin/app
 
 test-report:
-	gradle test
 	gradle jacocoTestReport
 
 .PHONY: build
