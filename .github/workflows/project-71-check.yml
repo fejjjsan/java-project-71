@@ -40,4 +40,4 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_I }}
         with:
-          coverageCommand: ../gradle test
+          coverageCommand: ../gradlew test
