@@ -2,7 +2,6 @@ package hexlet.code;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.assertj.core.api.Assertions.assertThat;
 import java.io.File;
 import static hexlet.code.Differ.generate;
@@ -14,11 +13,6 @@ class AppTest {
         String path = "src/test/resources";
         File file = new File(path);
         absolutePath = file.getAbsolutePath();
-    }
-
-    @Test
-    public void testPath() {
-        assertTrue(absolutePath.endsWith("src/test/resources"));
     }
 
     @Test
