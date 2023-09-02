@@ -34,6 +34,9 @@ testlogger {
 
 jacocoTestReport {
     dependsOn test
+    reports {
+        csv.required = false
+    }
 }
 
 application {
