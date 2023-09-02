@@ -30,4 +30,4 @@ jobs:
           coverageCommand: |
             echo ${{ github.workspace }}
             make test-report
-          coverageLocations: ${{github.workspace}}/app/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
+          coverageLocations: ${{github.workspace}}/build/reports/jacoco/test/jacocoTestReport.xml:jacoco
