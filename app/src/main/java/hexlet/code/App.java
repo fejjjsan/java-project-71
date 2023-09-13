@@ -1,15 +1,12 @@
 
 package hexlet.code;
 
-import static hexlet.code.Utils.formatters.Formatter.formatPlain;
-import static hexlet.code.Utils.formatters.Formatter.formatStylish;
-import hexlet.code.Utils.parser.ParseJson;
-import hexlet.code.Utils.parser.ParseYaml;
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Parameters;
 import java.util.concurrent.Callable;
+import static hexlet.code.Differ.generate;
 
 @Command(name = "gendiff", mixinStandardHelpOptions = true, version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
@@ -22,7 +19,7 @@ public class App implements Callable<Integer> {
     @Option(names = {"-f", "--format"},
             defaultValue = "${FORMAT:-stylish}",
             description = "output format [default:${DEFAULT-VALUE}]")
-    static String format;
+    static String format = "stylish";
     @Option(names = {"-h", "--help"}, usageHelp = true,
             description = "Show this help message and exit.")
     boolean usageHelpRequested;
@@ -31,20 +28,9 @@ public class App implements Callable<Integer> {
     boolean versionInfoRequested;
     @Override
     public Integer call() {
-        String json = "json";
-        String yaml = "yml";
         try {
-            if (p1.endsWith(json) && p2.endsWith(json) && format.equals("plain")) {
-                System.out.println(formatPlain(DiffGenerator.generate(p1, p2, new ParseJson())));
-            } else if (p1.endsWith(yaml) && p2.endsWith(yaml) && format.equals("plain")) {
-                System.out.println(formatPlain(DiffGenerator.generate(p1, p2, new ParseYaml())));
-            } else if (p1.endsWith(json) && p2.endsWith(json)) {
-                System.out.println(formatStylish(DiffGenerator.generate(p1, p2, new ParseJson())));
-            } else if (p1.endsWith(yaml) && p2.endsWith(yaml)) {
-                System.out.println(formatStylish(DiffGenerator.generate(p1, p2, new ParseYaml())));
-            } else {
-                throw new Exception("wrong file extension or option provided");
-            }
+            String result = generate(p1, p2, format);
+            System.out.println(result);
         } catch (Exception e) {
             e.printStackTrace();
             return 1;

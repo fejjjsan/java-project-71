@@ -7,14 +7,12 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLMapper;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ParseYaml implements Parser {
+public class YamlParser implements Parser {
     @Override
-    public Map<String, Object> parse(String path) throws IOException {
-        Path p = Paths.get(path).toAbsolutePath();
+    public Map<String, Object> parse(Path p) throws IOException {
         ObjectMapper mapper = new YAMLMapper();
         TypeReference<HashMap<String, Object>> type = new TypeReference<>() { };
 

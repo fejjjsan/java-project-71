@@ -1,17 +1,10 @@
 package hexlet.code;
 
-import hexlet.code.Utils.parser.ParseJson;
-import hexlet.code.Utils.parser.ParseYaml;
-import hexlet.code.Utils.parser.Parser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
-import static hexlet.code.Utils.formatters.Formatter.formatPlain;
 import static org.assertj.core.api.Assertions.assertThat;
-import static hexlet.code.Utils.formatters.Formatter.formatStylish;
 import java.io.File;
-
-import static hexlet.code.DiffGenerator.generate;
+import static hexlet.code.Differ.generate;
 
 class AppTest {
     String absolutePath;
@@ -26,8 +19,8 @@ class AppTest {
     public void testGenerateJsonStylish() throws Exception {
         String filePath1 = absolutePath + "/file1.json";
         String filePath2 = absolutePath + "/file2.json";
-        Parser json = new ParseJson();
-        String actual = formatStylish(generate(filePath1, filePath2, json));
+        String format = "stylish";
+        String actual = generate(filePath1, filePath2, format);
         String expected = """
                 {\s
                  - follow: false
@@ -44,8 +37,8 @@ class AppTest {
     public void testGenerateYamlStylish() throws Exception {
         String filePath1 = absolutePath + "/file1.yml";
         String filePath2 = absolutePath + "/file2.yml";
-        Parser yaml = new ParseYaml();
-        String actual = formatStylish(generate(filePath1, filePath2, yaml));
+        String format = "stylish";
+        String actual = generate(filePath1, filePath2, format);
         String expected = """
                 {\s
                  - follow: false
@@ -62,8 +55,8 @@ class AppTest {
     public void testGenerateJsonNestedStylish() throws Exception {
         String filePath1 = absolutePath + "/jsonNested1.json";
         String filePath2 = absolutePath + "/jsonNested2.json";
-        Parser json = new ParseJson();
-        String actual = formatStylish(generate(filePath1, filePath2, json));
+        String format = "stylish";
+        String actual = generate(filePath1, filePath2, format);
         String expected = """
                 {\s
                    chars1: [a, b, c]
@@ -97,8 +90,8 @@ class AppTest {
     public void testGenerateYamlNestedStylish() throws Exception {
         String filePath1 = absolutePath + "/yamlNested1.yml";
         String filePath2 = absolutePath + "/yamlNested2.yml";
-        Parser json = new ParseYaml();
-        String actual = formatStylish(generate(filePath1, filePath2, json));
+        String format = "stylish";
+        String actual = generate(filePath1, filePath2, format);
         String expected = """
                 {\s
                    chars1: [a, b, c]
@@ -132,8 +125,8 @@ class AppTest {
     public void testGenerateJsonNestedPlain() throws Exception {
         String filePath1 = absolutePath + "/jsonNested1.json";
         String filePath2 = absolutePath + "/jsonNested2.json";
-        Parser json = new ParseYaml();
-        String actual = formatPlain(generate(filePath1, filePath2, json));
+        String format = "plain";
+        String actual = generate(filePath1, filePath2, format);
         String expected = """
                 Property 'chars2' was updated. From [complex value] to false
                 Property 'checked' was updated. From false to true
