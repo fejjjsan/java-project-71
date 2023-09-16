@@ -42,7 +42,7 @@ jacocoTestReport {
 }
 
 application {
-    mainClass = 'hexlet.code.App'
+    mainClassName = "hexlet.code.App"
 }
 
 tasks.named('test', Test) {
