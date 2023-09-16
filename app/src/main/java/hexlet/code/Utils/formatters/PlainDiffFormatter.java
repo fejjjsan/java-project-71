@@ -64,9 +64,10 @@ public class PlainDiffFormatter implements DiffFormatter {
                     }
                     result.append("\n");
                 }
-                default -> {
-                    // skips when status "unchanged";
+                case "unchanged" -> {
+                    // do nothing when status is unchanged
                 }
+                default -> throw new IllegalArgumentException("Unexpected value in switch: " + i.getStatus());
             }
         });
 

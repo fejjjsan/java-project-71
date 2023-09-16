@@ -3,10 +3,10 @@ package hexlet.code;
 
 import static hexlet.code.Utils.parser.ParserFactory.getParser;
 import hexlet.code.Utils.formatters.DiffFormatter;
+import hexlet.code.Utils.formatters.JsonDiffFormatter;
 import hexlet.code.Utils.formatters.PlainDiffFormatter;
 import hexlet.code.Utils.formatters.StylishDiffFormatter;
 import hexlet.code.Utils.parser.Parser;
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import java.util.TreeMap;
 import java.util.Objects;
 
 public class Differ {
-    public static String generate(String file1, String file2, String format) throws IOException {
+    public static String generate(String file1, String file2, String format) throws Exception {
         Path p1 = Paths.get(file1).toAbsolutePath();
         Path p2 = Paths.get(file2).toAbsolutePath();
 
@@ -32,6 +32,8 @@ public class Differ {
             formatter = new StylishDiffFormatter();
         } else if (format.equals("plain")) {
             formatter = new PlainDiffFormatter();
+        } else if (format.equals("json")) {
+            formatter = new JsonDiffFormatter();
         }
 
         return formatter.formatDiffs(diffs);

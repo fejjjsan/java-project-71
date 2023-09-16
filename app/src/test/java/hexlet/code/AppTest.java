@@ -22,7 +22,7 @@ class AppTest {
         String format = "stylish";
         String actual = generate(filePath1, filePath2, format);
         String expected = """
-                {\s
+                {
                  - follow: false
                    host: hexlet.io
                  - proxy: 123.234.53.22
@@ -40,7 +40,7 @@ class AppTest {
         String format = "stylish";
         String actual = generate(filePath1, filePath2, format);
         String expected = """
-                {\s
+                {
                  - follow: false
                    host: hexlet.io
                  - proxy: 123.234.53.22
@@ -58,7 +58,7 @@ class AppTest {
         String format = "stylish";
         String actual = generate(filePath1, filePath2, format);
         String expected = """
-                {\s
+                {
                    chars1: [a, b, c]
                  - chars2: [d, e, f]
                  + chars2: false
@@ -93,7 +93,7 @@ class AppTest {
         String format = "stylish";
         String actual = generate(filePath1, filePath2, format);
         String expected = """
-                {\s
+                {
                    chars1: [a, b, c]
                  - chars2: [d, e, f]
                  + chars2: false
@@ -145,4 +145,20 @@ class AppTest {
         assertThat(actual).isEqualTo(expected);
     }
 
+    @Test
+    public void testGenerateFormatJson() throws Exception {
+        String filePath1 = absolutePath + "/file1.json";
+        String filePath2 = absolutePath + "/file2.json";
+        String format = "json";
+        String actual = generate(filePath1, filePath2, format);
+        String expected = """
+                {
+                  "follow" : false,
+                  "host" : "hexlet.io",
+                  "proxy" : "123.234.53.22",
+                  "timeout" : 20,
+                  "verbose" : true
+                }""";
+        assertThat(actual).isEqualTo(expected);
+    }
 }

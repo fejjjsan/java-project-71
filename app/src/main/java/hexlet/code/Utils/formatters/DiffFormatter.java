@@ -5,5 +5,5 @@ import java.util.List;
 
 public interface DiffFormatter {
 
-    String formatDiffs(List<DiffAccumulator> diffs);
+    String formatDiffs(List<DiffAccumulator> diffs) throws Exception;
 }
