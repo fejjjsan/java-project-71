@@ -16,6 +16,40 @@ class AppTest {
     }
 
     @Test
+    public void testGenerateDefaultJson() throws Exception {
+        String filePath1 = absolutePath + "/file1.json";
+        String filePath2 = absolutePath + "/file2.json";
+        String actual = generate(filePath1, filePath2);
+        String expected = """
+                {
+                  - follow: false
+                    host: hexlet.io
+                  - proxy: 123.234.53.22
+                  - timeout: 50
+                  + timeout: 20
+                  + verbose: true
+                }""";
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    public void testGenerateDefaultYaml() throws Exception {
+        String filePath1 = absolutePath + "/file1.yml";
+        String filePath2 = absolutePath + "/file2.yml";
+        String actual = generate(filePath1, filePath2);
+        String expected = """
+                {
+                  - follow: false
+                    host: hexlet.io
+                  - proxy: 123.234.53.22
+                  - timeout: 50
+                  + timeout: 20
+                  + verbose: true
+                }""";
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
     public void testGenerateJsonStylish() throws Exception {
         String filePath1 = absolutePath + "/file1.json";
         String filePath2 = absolutePath + "/file2.json";
