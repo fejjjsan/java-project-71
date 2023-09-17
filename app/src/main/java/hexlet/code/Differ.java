@@ -39,6 +39,21 @@ public class Differ {
         return formatter.formatDiffs(diffs);
     }
 
+    public static String generate(String file1, String file2) throws Exception {
+        Path p1 = Paths.get(file1).toAbsolutePath();
+        Path p2 = Paths.get(file2).toAbsolutePath();
+
+        String extension = getExtension(file1);
+        Parser parser = getParser(extension);
+        Map<String, Object> before = parser.parse(p1);
+        Map<String, Object> after = parser.parse(p2);
+        List<DiffAccumulator> diffs = build(before, after);
+
+        DiffFormatter formatter = new StylishDiffFormatter();
+
+        return formatter.formatDiffs(diffs);
+    }
+
     public static List<DiffAccumulator> build(Map<String, Object> before, Map<String, Object> after) {
 
         Map<String, Object> combined = new TreeMap<>();

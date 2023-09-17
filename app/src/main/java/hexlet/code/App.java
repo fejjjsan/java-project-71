@@ -29,8 +29,14 @@ public class App implements Callable<Integer> {
     @Override
     public Integer call() {
         try {
-            String result = generate(p1, p2, format);
-            System.out.println(result);
+            String result;
+            if (format == null) {
+                result = generate(p1, p2);
+                System.out.println(result);
+            } else if (format != null) {
+                result = generate(p1, p2, format);
+                System.out.println(result);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return 1;
