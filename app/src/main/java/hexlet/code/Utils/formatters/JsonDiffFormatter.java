@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class JsonDiffFormatter implements DiffFormatter {
-    @Override
+public final class JsonDiffFormatter implements DiffFormatter {
     public String formatDiffs(List<DiffAccumulator> diffs) throws Exception {
 
         Map<String, Object> diffsMap = new TreeMap<>();

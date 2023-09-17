@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-public class PlainDiffFormatter implements DiffFormatter {
+public final class PlainDiffFormatter implements DiffFormatter {
     public String formatDiffs(List<DiffAccumulator> diffs) {
         StringBuilder result = new StringBuilder();
 

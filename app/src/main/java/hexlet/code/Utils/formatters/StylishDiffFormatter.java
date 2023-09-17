@@ -3,7 +3,7 @@ package hexlet.code.Utils.formatters;
 import hexlet.code.DiffAccumulator;
 import java.util.List;
 
-public class StylishDiffFormatter implements DiffFormatter {
+public final class StylishDiffFormatter implements DiffFormatter {
     public String formatDiffs(List<DiffAccumulator> diffs) {
         StringBuilder result = new StringBuilder();
 

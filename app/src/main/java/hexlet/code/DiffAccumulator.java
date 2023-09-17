@@ -1,9 +1,9 @@
 package hexlet.code;
 
-public class DiffAccumulator {
+public final class DiffAccumulator {
 
-    final String key;
-    final String status;
+    final private String key;
+    final private String status;
     private Object value;
 
     private Object valueBefore;

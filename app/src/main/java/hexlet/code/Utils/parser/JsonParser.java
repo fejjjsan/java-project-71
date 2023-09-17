@@ -9,8 +9,7 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-public class JsonParser implements Parser {
-    @Override
+public final class JsonParser implements Parser {
     public Map<String, Object> parse(Path p) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();

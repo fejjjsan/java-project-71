@@ -10,8 +10,8 @@ import java.nio.file.Path;
 import java.util.HashMap;
 import java.util.Map;
 
-public class YamlParser implements Parser {
-    @Override
+public final class YamlParser implements Parser {
+
     public Map<String, Object> parse(Path p) throws IOException {
         ObjectMapper mapper = new YAMLMapper();
         TypeReference<HashMap<String, Object>> type = new TypeReference<>() { };

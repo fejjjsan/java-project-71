@@ -7,7 +7,7 @@ import java.io.File;
 import static hexlet.code.Differ.generate;
 
 class AppTest {
-    String absolutePath;
+    private String absolutePath;
     @BeforeEach
     void beforeEach() {
         String path = "src/test/resources";
