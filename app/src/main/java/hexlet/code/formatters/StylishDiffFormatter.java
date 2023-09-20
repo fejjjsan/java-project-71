@@ -1,10 +1,10 @@
-package hexlet.code.Utils.formatters;
+package hexlet.code.formatters;
 
 import hexlet.code.DiffAccumulator;
 import java.util.List;
 
 public final class StylishDiffFormatter implements DiffFormatter {
-    public String formatDiffs(List<DiffAccumulator> diffs) {
+    public String format(List<DiffAccumulator> diffs) {
         StringBuilder result = new StringBuilder();
 
         result.append("{\n");
@@ -43,7 +43,7 @@ public final class StylishDiffFormatter implements DiffFormatter {
                     result.append(i.getValue());
                     result.append("\n");
                 }
-                default -> throw new IllegalArgumentException("Unexpected value in switch: " + i.getStatus());
+                default -> throw new RuntimeException("Unexpected value in switch: " + i.getStatus());
             }
         });
         result.append("}");

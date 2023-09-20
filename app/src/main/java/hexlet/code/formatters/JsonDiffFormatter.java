@@ -1,4 +1,4 @@
-package hexlet.code.Utils.formatters;
+package hexlet.code.formatters;
 
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public final class JsonDiffFormatter implements DiffFormatter {
-    public String formatDiffs(List<DiffAccumulator> diffs) throws Exception {
+    public String format(List<DiffAccumulator> diffs) throws Exception {
 
         Map<String, Object> diffsMap = new TreeMap<>();
 

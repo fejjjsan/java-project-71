@@ -2,8 +2,8 @@ package hexlet.code;
 
 public final class DiffAccumulator {
 
-    private final String key;
-    private final String status;
+    private String key;
+    private String status;
     private Object value;
 
     private Object valueBefore;
@@ -13,6 +13,8 @@ public final class DiffAccumulator {
         this.key = key;
         this.status = status;
         this.value = value;
+    }
+    public DiffAccumulator() {
     }
 
     public DiffAccumulator(String key, String status, Object valueBefore, Object valueAfter) {

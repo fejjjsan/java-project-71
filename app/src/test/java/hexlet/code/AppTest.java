@@ -3,16 +3,17 @@ package hexlet.code;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
-import java.io.File;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import static hexlet.code.Differ.generate;
 
 class AppTest {
     private String absolutePath;
     @BeforeEach
     void beforeEach() {
-        String path = "src/test/resources";
-        File file = new File(path);
-        absolutePath = file.getAbsolutePath();
+        Path path = Paths.get("src", "test", "resources");
+        absolutePath = path.toAbsolutePath().toString();
     }
 
     @Test

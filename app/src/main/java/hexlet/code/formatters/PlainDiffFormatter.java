@@ -1,4 +1,4 @@
-package hexlet.code.Utils.formatters;
+package hexlet.code.formatters;
 
 import hexlet.code.DiffAccumulator;
 
@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 public final class PlainDiffFormatter implements DiffFormatter {
-    public String formatDiffs(List<DiffAccumulator> diffs) {
+    public String format(List<DiffAccumulator> diffs) {
         StringBuilder result = new StringBuilder();
 
         for (int i = 0; i < diffs.size(); i++) {
