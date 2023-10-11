@@ -25,15 +25,7 @@ public final class PlainDiffFormatter implements DiffFormatter {
                     result.append("' was ");
                     result.append(o.getStatus());
                     result.append(" with value: ");
-                    if (o.getValue() instanceof List<?> || o.getValue() instanceof Map<?, ?>) {
-                        result.append("[complex value]");
-                    } else if (o.getValue() instanceof String) {
-                        result.append("'");
-                        result.append(o.getValue());
-                        result.append("'");
-                    } else {
-                        result.append(o.getValue());
-                    }
+                    result.append(normalize(o, o.getStatus()));
                 }
                 case "updated" -> {
                     result.append("Property '");
@@ -42,25 +34,7 @@ public final class PlainDiffFormatter implements DiffFormatter {
                     result.append(o.getStatus());
                     result.append(".");
                     result.append(" From ");
-                    if (o.getValueBefore() != null && o.getValueBefore() instanceof Collection<?>) {
-                        result.append("[complex value]");
-                    } else if (o.getValueBefore() instanceof String) {
-                        result.append("'");
-                        result.append(o.getValueBefore());
-                        result.append("'");
-                    } else {
-                        result.append(o.getValueBefore());
-                    }
-                    result.append(" to ");
-                    if (o.getValueAfter() != null && o.getValueAfter() instanceof Collection<?>) {
-                        result.append("[complex value]");
-                    } else if (o.getValueAfter() instanceof String) {
-                        result.append("'");
-                        result.append(o.getValueAfter());
-                        result.append("'");
-                    } else {
-                        result.append(o.getValueAfter());
-                    }
+                    result.append(normalize(o, o.getStatus()));
                 }
                 case "unchanged" -> {
                     // do nothing when status is unchanged
@@ -71,6 +45,48 @@ public final class PlainDiffFormatter implements DiffFormatter {
             if (i < diffs.size() - 1 && !o.getStatus().equals("unchanged")) {
                 result.append("\n");
             }
+        }
+
+        return result.toString();
+    }
+
+    public static String normalize(DiffAccumulator o, String status) {
+        StringBuilder result = new StringBuilder();
+
+        switch (status) {
+            case "added" -> {
+                if (o.getValueBefore() instanceof List<?> || o.getValueBefore() instanceof Map<?, ?>) {
+                    result.append("[complex value]");
+                } else if (o.getValueBefore() instanceof String) {
+                    result.append("'");
+                    result.append(o.getValueBefore());
+                    result.append("'");
+                } else {
+                    result.append(o.getValueBefore());
+                }
+            }
+            case "updated" -> {
+                if (o.getValueBefore() != null && o.getValueBefore() instanceof Collection<?>) {
+                    result.append("[complex value]");
+                } else if (o.getValueBefore() instanceof String) {
+                    result.append("'");
+                    result.append(o.getValueBefore());
+                    result.append("'");
+                } else {
+                    result.append(o.getValueBefore());
+                }
+                result.append(" to ");
+                if (o.getValueAfter() != null && o.getValueAfter() instanceof Collection<?>) {
+                    result.append("[complex value]");
+                } else if (o.getValueAfter() instanceof String) {
+                    result.append("'");
+                    result.append(o.getValueAfter());
+                    result.append("'");
+                } else {
+                    result.append(o.getValueAfter());
+                }
+            }
+            default -> throw new IllegalArgumentException("Unexpected status parameter: " + status);
         }
 
         return result.toString();

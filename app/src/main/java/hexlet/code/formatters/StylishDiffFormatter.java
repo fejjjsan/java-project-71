@@ -14,14 +14,14 @@ public final class StylishDiffFormatter implements DiffFormatter {
                     result.append("  - ");
                     result.append(i.getKey());
                     result.append(": ");
-                    result.append(i.getValue());
+                    result.append(i.getValueBefore());
                     result.append("\n");
                 }
                 case "added" -> {
                     result.append("  + ");
                     result.append(i.getKey());
                     result.append(": ");
-                    result.append(i.getValue());
+                    result.append(i.getValueBefore());
                     result.append("\n");
                 }
                 case "updated" -> {
@@ -40,7 +40,7 @@ public final class StylishDiffFormatter implements DiffFormatter {
                     result.append("    ");
                     result.append(i.getKey());
                     result.append(": ");
-                    result.append(i.getValue());
+                    result.append(i.getValueBefore());
                     result.append("\n");
                 }
                 default -> throw new RuntimeException("Unexpected value in switch: " + i.getStatus());

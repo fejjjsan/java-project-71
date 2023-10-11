@@ -12,8 +12,8 @@ import static hexlet.code.Differ.generate;
         description = "Compares two configuration files and shows a difference.")
 
 public final class App implements Callable<Integer> {
-    static final int ERROR_CODE_1 = 1;
-    static final int CODE_0 = 0;
+    static final int ERROR = 1;
+    static final int SUCCESS = 0;
     @Parameters(index = "0", paramLabel = "filepath1", description = "path to first file")
     private static String p1;
     @Parameters(index = "1", paramLabel = "filepath2", description = "path to second file")
@@ -30,9 +30,9 @@ public final class App implements Callable<Integer> {
             System.out.println(result);
         } catch (Exception e) {
             e.printStackTrace();
-            return ERROR_CODE_1;
+            return ERROR;
         }
-        return CODE_0;
+        return SUCCESS;
     }
     public static void main(String[] args) {
         CommandLine.populateCommand(new App(), args);

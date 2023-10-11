@@ -4,15 +4,13 @@ public final class DiffAccumulator {
 
     private String key;
     private String status;
-    private Object value;
-
     private Object valueBefore;
     private Object valueAfter;
 
     public DiffAccumulator(String key, String status, Object value) {
         this.key = key;
         this.status = status;
-        this.value = value;
+        this.valueBefore = value;
     }
     public DiffAccumulator() {
     }
@@ -27,19 +25,12 @@ public final class DiffAccumulator {
     public String getKey() {
         return key;
     }
-
     public String getStatus() {
         return status;
     }
-
-    public Object getValue() {
-        return value;
-    }
-
     public Object getValueBefore() {
         return valueBefore;
     }
-
     public Object getValueAfter() {
         return valueAfter;
     }
@@ -49,7 +40,6 @@ public final class DiffAccumulator {
         return "DiffAccumulator{"
                 + "key='" + key + '\''
                 + ", status='" + status + '\''
-                + ", value=" + value
                 + ", valueBefore=" + valueBefore
                 + ", valueAfter=" + valueAfter
                 + '}';
