@@ -69,3 +69,9 @@ make test
 ```bash
 make lint
 ```
+
+## Author
+
+👤 **Artur Lastovskiy**
+
+- Github: [@fejjsan](https://github.com/fejjjsan)

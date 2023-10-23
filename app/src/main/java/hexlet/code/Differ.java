@@ -9,28 +9,27 @@ import hexlet.code.formatters.DiffFormatter;
 import java.util.List;
 import java.util.Map;
 
-
 public class Differ {
 
-    public static String generate(String file1, String file2, String format) throws Exception {
-        Map<String, Object> before = getData(file1);
-        Map<String, Object> after = getData(file2);
+    public static String generate(String data1, String data2, String format) throws Exception {
+        Map<String, Object> before = getData(data1);
+        Map<String, Object> after = getData(data2);
 
         List<DiffAccumulator> diffs = build(before, after);
         DiffFormatter formatter = getFormat(format);
         return formatter.format(diffs);
     }
 
-    public static String generate(String file1, String file2) throws Exception {
+    public static String generate(String data1, String data2) throws Exception {
         String format = "stylish";
-        return generate(file1, file2, format);
+        return generate(data1, data2, format);
     }
 
-    public static String getExtension(String file) {
+    public static String getExtension(String data) {
         String extension = "";
-        int index = file.lastIndexOf(".");
+        int index = data.lastIndexOf(".");
         if (index > 0) {
-            extension = file.substring(index + 1);
+            extension = data.substring(index + 1);
         }
         return extension;
     }

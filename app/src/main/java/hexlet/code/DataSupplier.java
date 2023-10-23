@@ -9,9 +9,9 @@ import static hexlet.code.Differ.getExtension;
 import static hexlet.code.parsers.ParserFactory.getParser;
 
 public class DataSupplier {
-    public static Map<String, Object> getData(String file) throws Exception {
-        Path p = Paths.get(file).toAbsolutePath();
-        String extension = getExtension(file);
+    public static Map<String, Object> getData(String data) throws Exception {
+        Path p = Paths.get(data).toAbsolutePath();
+        String extension = getExtension(data);
         Parser parser = getParser(extension);
         String content = Files.readString(p);
 

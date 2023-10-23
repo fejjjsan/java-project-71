@@ -1,6 +1,5 @@
 package hexlet.code;
 
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -16,18 +15,16 @@ public class DiffBuilder {
 
         List<DiffAccumulator> diffs = new ArrayList<>();
         combined.keySet()
-                .forEach(i -> {
+                .forEach(key -> {
                     DiffAccumulator diff = new DiffAccumulator();
-                    if (!after.containsKey(i)) {
-                        diff = new DiffAccumulator(i, "removed", before.get(i));
-                    } else if (!before.containsKey(i)) {
-                        diff = new DiffAccumulator(i, "added", after.get(i));
-                    } else if (after.containsKey(i) && before.containsKey(i)) {
-                        if (Objects.equals(after.get(i), before.get(i))) {
-                            diff = new DiffAccumulator(i, "unchanged", before.get(i));
-                        } else if (!Objects.equals(after.get(i), before.get(i))) {
-                            diff = new DiffAccumulator(i, "updated", before.get(i), after.get(i));
-                        }
+                    if (!after.containsKey(key)) {
+                        diff = new DiffAccumulator(key, "removed", before.get(key));
+                    } else if (!before.containsKey(key)) {
+                        diff = new DiffAccumulator(key, "added", after.get(key));
+                    } else if (Objects.equals(after.get(key), before.get(key))) {
+                        diff = new DiffAccumulator(key, "unchanged", before.get(key));
+                    } else if (!Objects.equals(after.get(key), before.get(key))) {
+                        diff = new DiffAccumulator(key, "updated", before.get(key), after.get(key));
                     }
                     diffs.add(diff);
                 });
