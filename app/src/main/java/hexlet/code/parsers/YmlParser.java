@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public final class YamlParser implements Parser {
+public final class YmlParser implements Parser {
 
     public Map<String, Object> parse(String str) throws IOException {
         ObjectMapper mapper = new YAMLMapper();
