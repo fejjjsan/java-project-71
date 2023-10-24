@@ -14,14 +14,17 @@ class AppTest {
 
     private static String jsonNested1;
     private static String jsonNested2;
-    private static String yamlNested1;
-    private static String yamlNested2;
+    private static String ymlNested1;
+    private static String ymlNested2;
     private static Path stylishTest;
     private static Path plainTest;
+    private static Path jsonTest;
     private static String plainFormat;
+    private static String stylishFormat;
+    private static String jsonFormat;
 
-    public static Path getAbsolutPathToFile(String file) {
-        Path path = Paths.get("src", "test", "resources", file);
+    public static Path getAbsolutPathToFile(String str) {
+        Path path = Paths.get("src", "test", "resources", str);
         return path.toAbsolutePath();
     }
 
@@ -29,38 +32,69 @@ class AppTest {
     static void beforeAll() {
         jsonNested1 = getAbsolutPathToFile("jsonNested1.json").toString();
         jsonNested2 = getAbsolutPathToFile("jsonNested2.json").toString();
-        yamlNested1 = getAbsolutPathToFile("yamlNested1.yml").toString();
-        yamlNested2 = getAbsolutPathToFile("yamlNested2.yml").toString();
+        ymlNested1 = getAbsolutPathToFile("ymlNested1.yml").toString();
+        ymlNested2 = getAbsolutPathToFile("ymlNested2.yml").toString();
         stylishTest = getAbsolutPathToFile("stylishTest.txt");
         plainTest = getAbsolutPathToFile("plainTest.txt");
+        jsonTest = getAbsolutPathToFile("jsonTest.txt");
         plainFormat = "plain";
+        stylishFormat = "stylish";
+        jsonFormat = "json";
     }
 
     @Test
-    public void testGenerateJsonNestedStylish() throws Exception {
+    public void testGenerateDefaultJson() throws Exception {
         String actual = generate(jsonNested1, jsonNested2);
         String expected = Files.readString(stylishTest);
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
-    public void testGenerateYamlNestedStylish() throws Exception {
-        String actual = generate(yamlNested1, yamlNested2);
+    public void testGenerateDefaultForYml() throws Exception {
+        String actual = generate(ymlNested1, ymlNested2);
         String expected = Files.readString(stylishTest);
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
-    public void testGenerateJsonNestedPlain() throws Exception {
+    public void testGenerateStylishForJson() throws Exception {
+        String actual = generate(jsonNested1, jsonNested2, stylishFormat);
+        String expected = Files.readString(stylishTest);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    public void testGeneratePlainForJson() throws Exception {
         String actual = generate(jsonNested1, jsonNested2, plainFormat);
         String expected = Files.readString(plainTest);
         assertThat(actual).isEqualTo(expected);
     }
 
     @Test
-    public void testGenerateYamlNestedPlain() throws Exception {
-        String actual = generate(yamlNested1, yamlNested2, plainFormat);
+    public void testGenerateStylishForYml() throws Exception {
+        String actual = generate(ymlNested1, ymlNested2, stylishFormat);
+        String expected = Files.readString(stylishTest);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    public void testGeneratePlainForYml() throws Exception {
+        String actual = generate(ymlNested1, ymlNested2, plainFormat);
         String expected = Files.readString(plainTest);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    public void testGenerateJson() throws Exception {
+        String actual = generate(jsonNested1, jsonNested2, jsonFormat);
+        String expected = Files.readString(jsonTest);
+        assertThat(actual).isEqualTo(expected);
+    }
+
+    @Test
+    public void testGenerateJsonForYml() throws Exception {
+        String actual = generate(ymlNested1, ymlNested2, jsonFormat);
+        String expected = Files.readString(jsonTest);
         assertThat(actual).isEqualTo(expected);
     }
 }
