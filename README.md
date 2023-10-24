@@ -5,8 +5,9 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/e6593b99af8961fe8f73/maintainability)](https://codeclimate.com/github/fejjjsan/java-project-71/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/e6593b99af8961fe8f73/test_coverage)](https://codeclimate.com/github/fejjjsan/java-project-71/test_coverage)
 
-CLI that receives two json/yml files and shows difference between them in different formats.
-Default format is set to stylish. When used with **-f, --format=format** option, format should be specified.
+CLI that receives two json/yml files as an arguments and shows difference between them in different formats (`stylish`, `plain`, `json`). 
+When used with `-f, --format=format` option, format should be specified. If no options applied, 
+format is set to `stylish` by default. 
 
 ## Prerequisites
 * OpenJDK version >= 20.0.1
